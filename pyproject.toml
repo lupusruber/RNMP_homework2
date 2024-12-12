@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "rnmp-homework2"
+version = "0.1.0"
+description = ""
+authors = ["lupusruber <petarpro234@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.2.3"
+ipykernel = "^6.29.5"
+matplotlib = "^3.9.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
