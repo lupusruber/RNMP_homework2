@@ -35,6 +35,13 @@ This project runs a set of scripts to train and eval a recommendation system (AL
 
 ### Build Project Guide
 
+1. Pull project from Github
+```bash
+git clone https://github.com/lupusruber/RNMP_homework2.git
+cd RNMP_homework2
+```
+
+2. Run the main script
 ```bash
 source main_script.sh
 ```
