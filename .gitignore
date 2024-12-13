@@ -1,1 +1,3 @@
 data/u.*
+scripts/checkpoints/*
+scripts/best_model/*
