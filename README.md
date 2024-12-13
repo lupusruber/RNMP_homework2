@@ -1,7 +1,7 @@
 
 # Рударење на масивни податоци: Домашна работа 2
 
-This project runs a set of scripts to train and eval a recommendation system (ALS, Alternating Least Squares model) in Spark MLlib with the MovieLens dataset. Below are the project details, setup instructions, and other highlights.
+This project runs a set of scripts to train and eval a recommendation system (ALS, Alternating Least Squares model) in the Spark MLlib with the MovieLens dataset. Below are the project details, setup instructions, and other highlights.
 
 ---
 
@@ -33,18 +33,17 @@ This project runs a set of scripts to train and eval a recommendation system (AL
 - Python 3.10 or above with `poetry` for dependency management.
 - Spark installed in the Docker container.
 
-### Step-by-Step Guide
+### Build Project Guide
 
-1. **Build Project Preparation**
-   - Run:
-   ```bash
-   source data/get_data_script.sh
-   ``` 
-   - This script performs the following:
-     - Downloads and preprocesses the data.
-     - Sets up a Spark cluster in Docker.
-     - Trains an ALS model on the MovieLens dataset.
-     - Evaluates the model's performance using the metrics: RMSE, Precision@K, Recall@K, and NDCG.
+```bash
+source main_script.sh
+```
+
+This script performs the following:
+- Downloads and preprocesses the data.
+- Sets up a Spark cluster in Docker.
+- Trains an ALS model on the MovieLens dataset.
+- Evaluates the model's performance using the metrics: RMSE, Precision@K, Recall@K, and NDCG.
 
 ---
 
