@@ -1,4 +1,5 @@
 #!/bin/sh
+# get_data_script.sh
 
 cd data
 wget https://files.grouplens.org/datasets/movielens/ml-100k.zip
@@ -18,3 +19,4 @@ sed -i '1s/^/user_id|age|gender|occupation|zip_code\n/' u.user
 sed -i '1s/^/occupation\n/' u.occupation
 sed -i '1s#^#movie_id|movie_title|release_date|video_release_date|imdb_url|unknown|action|adventure|animation|childrens|comedy|crime|documentary|drama|fantasy|film_noir|horror|musical|mystery|romance|sci_fi|thriller|war|western\n#' u.item
 
+cd ..

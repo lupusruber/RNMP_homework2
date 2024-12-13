@@ -1,3 +1,5 @@
+# spark_script.py
+
 from pyspark.sql import SparkSession, DataFrame
 import pyspark.sql.functions as F
 from pyspark.sql.types import StructField, StructType, LongType
@@ -8,7 +10,7 @@ from pyspark.ml.tuning import CrossValidator, ParamGridBuilder
 
 from pyspark.mllib.evaluation import RankingMetrics
 
-
+import logging
 from pathlib import Path
 
 PROJECT_LOCATION = Path(__file__).parent.parent
@@ -17,6 +19,10 @@ DATASET_PATH = Path(f"{PROJECT_LOCATION}/data/u.data")
 MODEL_PATH = Path(f'{PROJECT_LOCATION}/scripts/best_model/best_model.model')
 
 K = 10
+
+logger = logging.getLogger('spark_ml_script')
+logging.basicConfig(level=logging.INFO)
+
 
 
 def get_spark_session(
@@ -59,7 +65,7 @@ def get_best_model(train_data: DataFrame, evaluator: RegressionEvaluator) -> ALS
 
     if MODEL_PATH.exists():
 
-        print("Best Model found")
+        logger.info("Best Model found")
 
         return ALSModel.load(MODEL_PATH)
 
@@ -128,14 +134,15 @@ def get_metrics(
 
     rmse = evaluator.evaluate(predictions)
 
-    print(f"Root Mean Squared Error: {rmse}")
-    print(f"Precision@{k}: {metrics.precisionAt(k)}")
-    print(f"Recall@{k}: {metrics.recallAt(k)}")
-    print(f"NDCG@{k}: {metrics.ndcgAt(k)}")
-    print(f"Mean Average Precision: {metrics.meanAveragePrecision}")
+    logger.info(f"Root Mean Squared Error: {rmse}")
+    logger.info(f"Precision@{k}: {metrics.precisionAt(k)}")
+    logger.info(f"Recall@{k}: {metrics.recallAt(k)}")
+    logger.info(f"NDCG@{k}: {metrics.ndcgAt(k)}")
+    logger.info(f"Mean Average Precision: {metrics.meanAveragePrecision}")
 
 
 if __name__ == "__main__":
+
 
     spark = get_spark_session()
 
