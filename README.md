@@ -62,7 +62,7 @@ Main script to orchestrate data loading, Spark cluster setup, and model training
 ### `get_data_script.sh`
 Script to download and preprocess the MovieLens dataset.
 
-### `run_spark_scripts.sh`
+### `run_spark_script.sh`
 Script to submit the Spark job (`spark_script.py`) to the Spark cluster.
 
 ### `spark_script.py`
