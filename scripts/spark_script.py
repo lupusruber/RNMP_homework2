@@ -14,15 +14,14 @@ import logging
 from pathlib import Path
 
 PROJECT_LOCATION = Path(__file__).parent.parent
-CHECKPOINT_DIR = Path(f"{PROJECT_LOCATION}/scripts/checkpoints")
-DATASET_PATH = Path(f"{PROJECT_LOCATION}/data/u.data")
-MODEL_PATH = Path(f'{PROJECT_LOCATION}/scripts/best_model/best_model.model')
+CHECKPOINT_DIR = f"{PROJECT_LOCATION}/scripts/checkpoints"
+DATASET_PATH = f"{PROJECT_LOCATION}/data/u.data"
+MODEL_PATH = f"{PROJECT_LOCATION}/scripts/best_model/best_model.model"
 
 K = 10
 
-logger = logging.getLogger('spark_ml_script')
+logger = logging.getLogger("spark_ml_script")
 logging.basicConfig(level=logging.INFO)
-
 
 
 def get_spark_session(
@@ -35,7 +34,6 @@ def get_spark_session(
         .config("spark.checkpoint.dir", CHECKPOINT_DIR)
         .getOrCreate()
     )
-
     spark.sparkContext.setCheckpointDir(CHECKPOINT_DIR)
     # spark.sparkContext.setLogLevel(log_level)
     spark.conf.set("spark.sql.shuffle.partitions", "4")
@@ -63,7 +61,7 @@ def get_data(spark: SparkSession) -> tuple[DataFrame, DataFrame]:
 
 def get_best_model(train_data: DataFrame, evaluator: RegressionEvaluator) -> ALS:
 
-    if MODEL_PATH.exists():
+    if Path(MODEL_PATH).exists():
 
         logger.info("Best Model found")
 
@@ -81,7 +79,8 @@ def get_best_model(train_data: DataFrame, evaluator: RegressionEvaluator) -> ALS
         ParamGridBuilder()
         .addGrid(als.rank, [10, 20, 30])
         .addGrid(als.regParam, [0.01, 0.1, 1.0])
-        .addGrid(als.maxIter, [10, 20, 30]).build()
+        .addGrid(als.maxIter, [10, 20, 30])
+        .build()
     )
 
     cv = CrossValidator(
@@ -142,7 +141,6 @@ def get_metrics(
 
 
 if __name__ == "__main__":
-
 
     spark = get_spark_session()
 
