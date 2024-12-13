@@ -13,7 +13,6 @@ echo "Created dirs inside the scripts folder"
 
 chmod -R 777 ./data ./scripts
 
-
 echo "Creating Spark Cluster inside Docker Compose"
 docker-compose up -d
 echo "Created Spark Cluster inside Docker Compose"
