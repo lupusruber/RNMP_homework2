@@ -74,6 +74,16 @@ Implements the following:
 
 ---
 
+## Results for the best model
+
+- Root Mean Squared Error: 0.9165499757845692
+- Precision@10: 0.04861612515042121
+- Recall@10: 0.024782289580880097
+- NDCG@10: 0.05164765467524519
+- Mean Average Precision: 0.00887359068973789
+
+---
+
 ## Key Features
 
 - **Data Preprocessing**

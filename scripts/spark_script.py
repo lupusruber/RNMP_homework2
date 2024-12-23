@@ -14,9 +14,9 @@ import logging
 from pathlib import Path
 
 PROJECT_LOCATION = Path(__file__).parent.parent
-CHECKPOINT_DIR = Path(f"{PROJECT_LOCATION}/scripts/checkpoints")
-DATASET_PATH = Path(f"{PROJECT_LOCATION}/data/u.data")
-MODEL_PATH = Path(f"{PROJECT_LOCATION}/scripts/best_model/best_model.model")
+CHECKPOINT_DIR = f"{PROJECT_LOCATION}/scripts/checkpoints"
+DATASET_PATH = f"{PROJECT_LOCATION}/data/u.data"
+MODEL_PATH = f"{PROJECT_LOCATION}/scripts/best_model/best_model.model"
 
 K = 10
 
@@ -34,7 +34,7 @@ def get_spark_session(
         .config("spark.checkpoint.dir", CHECKPOINT_DIR)
         .getOrCreate()
     )
-
+    
     spark.sparkContext.setCheckpointDir(CHECKPOINT_DIR)
     # spark.sparkContext.setLogLevel(log_level)
     spark.conf.set("spark.sql.shuffle.partitions", "4")
@@ -62,7 +62,7 @@ def get_data(spark: SparkSession) -> tuple[DataFrame, DataFrame]:
 
 def get_best_model(train_data: DataFrame, evaluator: RegressionEvaluator) -> ALS:
 
-    if MODEL_PATH.exists():
+    if Path(MODEL_PATH).exists():
 
         logger.info("Best Model found")
 
